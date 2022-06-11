@@ -12,7 +12,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 class DetailScreen extends StatefulWidget {
   final String instrument;
 
-  const DetailScreen({required Key key, required this.instrument}) : super(key: key);
+  const DetailScreen({required Key? key, required this.instrument})
+      : super(key: key);
 
   @override
   _DetailScreenState createState() => _DetailScreenState(this.instrument);
@@ -90,7 +91,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     } else if (state is CandlesLoaded) {
                       Candles candles = state.candles;
                       List<CandleData> candleData =
-                          createChartData(candles.candles);
+                          createChartData(candles.candles!);
                       return Padding(
                         padding: EdgeInsets.zero,
                         child: Container(
@@ -180,7 +181,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                           color: Colors.black54),
                                     ),
                                     Text(
-                                      'Spread ${calSpread(double.parse(price.closeoutAsk), double.parse(price.closeoutBid))} %',
+                                      'Spread ${calSpread(double.parse(price.closeoutAsk!), double.parse(price.closeoutBid!))} %',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black54),
@@ -359,11 +360,11 @@ class _DetailScreenState extends State<DetailScreen> {
     List<CandleData> candleData = [];
     candles.forEach((candle) {
       final c = CandleData(
-        x: DateTime.parse(candle.time),
-        open: double.parse(candle.candleItem.open),
-        high: double.parse(candle.candleItem.high),
-        low: double.parse(candle.candleItem.low),
-        close: double.parse(candle.candleItem.close),
+        x: DateTime.parse(candle.time!),
+        open: double.parse(candle.candleItem!.open!),
+        high: double.parse(candle.candleItem!.high!),
+        low: double.parse(candle.candleItem!.low!),
+        close: double.parse(candle.candleItem!.close!),
       );
       candleData.add(c);
     });
@@ -372,11 +373,11 @@ class _DetailScreenState extends State<DetailScreen> {
 }
 
 class CandleData {
-  final DateTime x;
-  final double open;
-  final double high;
-  final double low;
-  final double close;
+  final DateTime? x;
+  final double? open;
+  final double? high;
+  final double? low;
+  final double? close;
 
   CandleData({this.x, required this.open, this.high, this.low, this.close});
 }

@@ -34,11 +34,11 @@ class _PriceEurUsdState extends State<PriceEurUsd> {
               Candles candles = state.candles;
               final List<CandleData> candleData = [];
               int index = 0;
-              for (Candle candle in candles.candles) {
+              for (Candle candle in candles.candles!) {
                 candleData.add(
                   CandleData(
                     index: '${index++}',
-                    ask: double.parse(candle.candleItem.close),
+                    ask: double.parse(candle.candleItem!.close!),
                   ),
                 );
               }
@@ -127,7 +127,7 @@ class _PriceEurUsdState extends State<PriceEurUsd> {
           color: Colors.white,
           border: (selectedGranularity == title)
               ? Border.all(
-                  color: Colors.red[500],
+                  color: Colors.red[500]!,
                 )
               : null,
           borderRadius: BorderRadius.all(
@@ -146,8 +146,8 @@ class _PriceEurUsdState extends State<PriceEurUsd> {
 }
 
 class CandleData {
-  final String index;
-  final double ask;
+  final String? index;
+  final double? ask;
 
   CandleData({this.index, this.ask});
 }

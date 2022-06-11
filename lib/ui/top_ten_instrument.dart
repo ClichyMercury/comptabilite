@@ -37,7 +37,8 @@ class _TopTenInstrumentState extends State<TopTenInstrument> {
                     Price price = prices[index];
                     final fromFlag =
                         price.instrument!.split('_')[0].toLowerCase();
-                    final toFlag = price.instrument!.split('_')[1].toLowerCase();
+                    final toFlag =
+                        price.instrument!.split('_')[1].toLowerCase();
                     return Container(
                       padding: EdgeInsets.all(25),
                       decoration: BoxDecoration(
@@ -130,7 +131,7 @@ class _TopTenInstrumentState extends State<TopTenInstrument> {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                '${calSpread(double.parse(price.closeoutAsk), double.parse(price.closeoutBid))} %',
+                                '${calSpread(double.parse(price.closeoutAsk!), double.parse(price.closeoutBid!))} %',
                                 style: Theme.of(context)
                                     .textTheme
                                     .caption!
@@ -151,7 +152,9 @@ class _TopTenInstrumentState extends State<TopTenInstrument> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => DetailScreen(
-                                            instrument: price.instrument),
+                                          instrument: price.instrument!,
+                                          key: null,
+                                        ),
                                       ),
                                     );
                                   },
